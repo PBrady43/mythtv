@@ -46,4 +46,8 @@
     if ($dbh->do("ALTER TABLE `filemarkup` ORDER BY filename")) {
         print "Defragmented: filemarkup\n";
     }
+# Remove deletependings
+   if ($dbh->do("UPDATE recorded SET deletepending = 0 where recgroup = 'Deleted';")) {
+       print "Fixed deletependings\n";
+   }
 
